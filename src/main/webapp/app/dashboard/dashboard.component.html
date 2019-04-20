@@ -1,0 +1,38 @@
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      <span class="title">学生列表</span>
+      <button mat-icon-button (click)="syncStudents()">
+        <mat-icon>sync</mat-icon>
+      </button>
+      <button mat-icon-button routerLink="/add">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </mat-card-title>
+    <div>
+      <table style="width: 100%">
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th style="width: 100px">操作</th>
+        </tr>
+        <tr *ngFor="let student of students">
+          <td><div class="align-center">{{student.id}}</div></td>
+          <td><div class="align-center">{{student.name}}</div></td>
+          <td><div class="align-center">{{student.age}}</div></td>
+          <td><div class="align-center">
+            <button mat-icon-button [routerLink]="['/edit', student.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <span style="width: 5px"></span>
+            <button mat-icon-button (click)="remove(student)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div></td>
+        </tr>
+      </table>
+      <br>
+    </div>
+  </mat-card>
+</div>

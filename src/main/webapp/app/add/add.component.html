@@ -1,0 +1,33 @@
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      添加学生
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input #id matInput type="number" placeholder="学号">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input #name matInput placeholder="姓名">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input #number matInput min="0" max="200" type="number" placeholder="年龄">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="align-center">
+      <button mat-raised-button color="primary" (click)="add(id.value, name.value, number.value)">添加</button>
+    </div>
+  </mat-card>
+</div>

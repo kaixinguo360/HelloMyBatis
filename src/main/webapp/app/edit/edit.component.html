@@ -1,0 +1,33 @@
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      编辑学生
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="student.id" type="number"  placeholder="学号">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="student.name" placeholder="姓名">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="student.age" min="0" max="200" type="number" placeholder="年龄">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="align-center">
+      <button mat-raised-button color="primary" (click)="save()">保存</button>
+    </div>
+  </mat-card>
+</div>
