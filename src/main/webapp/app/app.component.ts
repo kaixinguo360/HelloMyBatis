@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  public title = '学生管理系统';
+  public title = '智能停车场管理系统';
 
   back() {
     this.location.back();

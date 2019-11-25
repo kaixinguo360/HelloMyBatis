@@ -13,8 +13,8 @@ import {Student, StudentService} from '../student.service';
 })
 export class EditComponent implements OnInit {
   
-  private id: number;
-  public student: Student = { id: 0, name: '', age: 0 };
+  private id: string;
+  public student: Student = { id: '', name: '', value: 0 };
 
   public save() {
     this.service.modify(this.id, this.student).pipe(
@@ -35,7 +35,7 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id');
     this.service.get(this.id).pipe(
       tap(students => this.student = students),
       catchError(err => {

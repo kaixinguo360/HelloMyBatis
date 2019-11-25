@@ -14,7 +14,7 @@ import {of} from 'rxjs';
 export class AddComponent implements OnInit {
   
   public add(id: string, name: string, age: string) {
-    const student: Student = { id: Number(id), name: name, age: Number(age) };
+    const student: Student = { id: id, name: name, value: Number(age) };
     this.service.add(student).pipe(
       tap(() => {
         this.router.navigate([ '/']);

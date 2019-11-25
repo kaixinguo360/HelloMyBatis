@@ -5,9 +5,9 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators/catchError';
 
 export interface Student {
-  id: number,
+  id: string,
   name: string,
-  age: number
+  value: number
 }
 
 @Injectable({
@@ -25,7 +25,7 @@ export class StudentService {
     );
   }
 
-  public remove(id: number): Observable<Student> {
+  public remove(id: string): Observable<Student> {
     return this.http.request<Student>('delete', this.root + '/' + id).pipe(
       catchError(err => {
         return throwError(err);
@@ -33,7 +33,7 @@ export class StudentService {
     );
   }
 
-  public get(id: number): Observable<Student> {
+  public get(id: string): Observable<Student> {
     return this.http.get<Student>(this.root + '/' + id).pipe(
       catchError(err => {
         return throwError(err);
@@ -49,7 +49,7 @@ export class StudentService {
     );
   }
 
-  public modify(id: number, student: Student): Observable<Student> {
+  public modify(id: string, student: Student): Observable<Student> {
     return this.http.put<Student>(this.root + '/' + id, student).pipe(
       catchError(err => {
         return throwError(err);

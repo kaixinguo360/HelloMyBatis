@@ -27,11 +27,11 @@ public class StudentService {
         }
     }
 
-    public void remove(int id) {
+    public void remove(String id) {
         studentMapper.delete(id);
     }
 
-    public Student get(int id) {
+    public Student get(String id) {
         return studentMapper.select(id);
     }
 
@@ -39,7 +39,7 @@ public class StudentService {
         return studentMapper.selectAll();
     }
 
-    public void modify(int id, Student student) throws InternalException {
+    public void modify(String id, Student student) throws InternalException {
         Student old = studentMapper.select(id);
         if (old != null) {
             if (id != student.getId() && studentMapper.select(student.getId()) != null) {

@@ -20,25 +20,25 @@ public class StudentServiceTest {
     public void test() throws InternalException {
 
         // Add Student
-        Student student1 = new Student(1, "李明", 20);
-        Student student2 = new Student(2, "Tom", 21);
+        Student student1 = new Student("1", "李明", 20);
+        Student student2 = new Student("2", "Tom", 21);
         studentService.add(student1);
         studentService.add(student2);
 
         // Update Student
-        student1.setAge(22);
-        studentService.modify(1, student1);
+        student1.setValue(22);
+        studentService.modify("1", student1);
 
         // Get Student
-        studentService.get(1);
-        studentService.get(2);
+        studentService.get("1");
+        studentService.get("2");
 
         // Get All Student
         studentService.getAll();
 
         // Delete Student
-        studentService.remove(1);
-        studentService.remove(2);
+        studentService.remove("1");
+        studentService.remove("2");
     }
 
 }

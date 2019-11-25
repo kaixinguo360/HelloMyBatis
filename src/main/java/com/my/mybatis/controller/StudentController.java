@@ -24,14 +24,14 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Student remove(@PathVariable int id) {
+    public Student remove(@PathVariable String id) {
         Student student = studentService.get(id);
         studentService.remove(id);
         return student;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Student get(@PathVariable int id) throws InternalException {
+    public Student get(@PathVariable String id) throws InternalException {
         Student student = studentService.get(id);
         if (student != null) {
             return student;
@@ -46,7 +46,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Student modify(@PathVariable int id, @RequestBody Student student) throws InternalException {
+    public Student modify(@PathVariable String id, @RequestBody Student student) throws InternalException {
         studentService.modify(id, student);
         return student;
     }

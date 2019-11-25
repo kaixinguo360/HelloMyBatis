@@ -1,11 +1,11 @@
 package com.my.mybatis.mapper
 
 class Student(
-    var id: Int? = null,
+    var id: String? = null,
     var name: String? = null,
-    var age: Int? = null
+    var value: Int? = null
 ) {
     override fun toString(): String {
-        return "学生[$id,$name,$age]"
+        return "学生[$id,$name,$value]"
     }
 }
