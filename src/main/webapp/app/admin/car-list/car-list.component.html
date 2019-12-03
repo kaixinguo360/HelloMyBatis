@@ -12,17 +12,19 @@
     <div>
       <table style="width: 100%">
         <tr>
-          <th>用户名</th>
           <th>车牌号</th>
-          <th>时长</th>
-          <th>费用</th>
+          <th>车主</th>
+          <th style="min-width: 100px;">进入时间</th>
+          <th>时长/H</th>
+          <th>费用/RMB</th>
           <th style="width: 100px">操作</th>
         </tr>
         <tr *ngFor="let user of users">
-          <td><div class="align-center">{{user.name}}</div></td>
           <td><div class="align-center">{{user.car}}</div></td>
-          <td><div class="align-center">{{user.enterTime | date}}</div></td>
-          <td><div class="align-center">{{(time-user.enterTime)/3600000*price}}</div></td>
+          <td><div class="align-center">{{user.name}}</div></td>
+          <td><div class="align-center">{{format(user.enterTime)}}</div></td>
+          <td><div class="align-center">{{time(user.enterTime)}}</div></td>
+          <td><div class="align-center">{{value(user.enterTime)}}</div></td>
           <td><div class="align-center">
             <button mat-icon-button [routerLink]="['../users/edit', user.id]">
               <mat-icon>edit</mat-icon>

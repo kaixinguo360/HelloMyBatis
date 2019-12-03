@@ -13,8 +13,28 @@ import {User, UserService} from '../../service/user.service';
 export class CarListComponent implements OnInit {
 
   public price: number = 10;
-  public time: number = Date.parse(new Date().toString());
+  public now: number = Date.parse(new Date().toString());
   public users: User[] = [];
+
+  public format(date: string) {
+    const time = new Date(date);
+    return time.getMonth() + '月' 
+      + time.getDay() + '日 '
+      + time.getHours() + ':'
+      + time.getMinutes()
+  }
+  
+  public time(date: string) {
+    return this.floor((this.now - Date.parse(date)) / 3600000);
+  }
+  
+  public value(date: string) {
+    return this.floor(this.time(date) * this.price);
+  }
+  
+  public floor(num: number) {
+    return Math.floor(num*100)/100;
+  }
 
   public remove(user: User) {
     if (confirm(`您确定要删除用户"${user.name}"吗?`)) {

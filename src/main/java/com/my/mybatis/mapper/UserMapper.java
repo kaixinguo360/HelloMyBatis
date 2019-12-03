@@ -36,7 +36,7 @@ public interface UserMapper {
         "tel = #{new.tel}," +
         "parked = #{new.parked}," +
         "credit = #{new.credit}," +
-        "passwd = #{new.passwd}" +
+        "passwd = #{new.passwd}," +
         "enterTime = #{new.enterTime}" +
         "WHERE id = #{id}")
     void update(@Param("id") int id, @Param("new") User user);
