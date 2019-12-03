@@ -4,15 +4,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {Student, StudentService} from '../student.service';
+import {Student, StudentService} from '../../student.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  selector: 'app-user-edit',
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.css']
 })
-export class EditComponent implements OnInit {
-  
+export class UserEditComponent implements OnInit {
+
   private id: string;
   public student: Student = { id: '', name: '', value: 0 };
 

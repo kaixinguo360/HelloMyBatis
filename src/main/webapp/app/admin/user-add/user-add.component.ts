@@ -3,16 +3,16 @@ import {Router} from '@angular/router';
 
 import {catchError, tap} from 'rxjs/operators';
 
-import {Student, StudentService} from '../student.service';
+import {Student, StudentService} from '../../student.service';
 import {of} from 'rxjs';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-user-add',
+  templateUrl: './user-add.component.html',
+  styleUrls: ['./user-add.component.css']
 })
-export class AddComponent implements OnInit {
-  
+export class UserAddComponent implements OnInit {
+
   public add(id: string, name: string, age: string) {
     const student: Student = { id: id, name: name, value: Number(age) };
     this.service.add(student).pipe(

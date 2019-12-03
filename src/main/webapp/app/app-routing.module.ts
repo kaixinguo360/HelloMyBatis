@@ -1,14 +1,31 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {AddComponent} from './add/add.component';
-import {EditComponent} from './edit/edit.component';
+import {SysSettingComponent} from './admin/sys-setting/sys-setting.component';
+
+import {CarListComponent} from './admin/car-list/car-list.component';
+
+import {UserListComponent} from './admin/user-list/user-list.component';
+import {UserAddComponent} from './admin/user-add/user-add.component';
+import {UserEditComponent} from './admin/user-edit/user-edit.component';
+import {UserInfoComponent} from './user/user-info/user-info.component';
+import {UserCarComponent} from './user/user-car/user-car.component';
+import {UserMapComponent} from './user/user-map/user-map.component';
+import {UserSettingComponent} from './user/user-setting/user-setting.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'add', component: AddComponent },
-  { path: 'edit/:id', component: EditComponent }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'admin', redirectTo: 'admin/cars', pathMatch: 'full' },
+  { path: 'admin/users', component: UserListComponent },
+  { path: 'admin/cars', component: CarListComponent },
+  { path: 'admin/settings', component: SysSettingComponent },
+  { path: 'admin/users/add', component: UserAddComponent },
+  { path: 'admin/users/edit/:id', component: UserEditComponent },
+  { path: 'user', redirectTo: 'user/info', pathMatch: 'full' },
+  { path: 'user/info', component: UserInfoComponent },
+  { path: 'user/car', component: UserCarComponent },
+  { path: 'user/map', component: UserMapComponent },
+  { path: 'user/settings', component: UserSettingComponent },
 ];
 
 @NgModule({

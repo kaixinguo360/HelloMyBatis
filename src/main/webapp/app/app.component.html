@@ -1,24 +1,36 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolbar">
-      <div class="icon-box">
-        <button type="button" aria-label="Logo" mat-icon-button>
-          <mat-icon aria-label="Side nav toggle icon">directions_car</mat-icon>
-        </button>
-      </div>
-      <span class="title">{{title}}</span>
-      <div class="icon-box" *ngIf="router.url!='/'">
-        <button
-          type="button"
-          aria-label="Home"
-          mat-icon-button
-          routerLink="">
-          <mat-icon>home</mat-icon>
-        </button>
-      </div>
-    </mat-toolbar>
-    <div class="content-container">
-      <router-outlet></router-outlet>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button
+            *ngIf="fillerNav.length"
+            (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <div class="icon-box">
+      <button type="button" aria-label="Logo" mat-icon-button>
+        <mat-icon aria-label="Side nav toggle icon">directions_car</mat-icon>
+      </button>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <span class="title">{{title}}</span>
+    <div class="icon-box" *ngIf="router.url!='/'">
+      <button
+        type="button"
+        aria-label="Home"
+        mat-icon-button
+        routerLink="">
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list class="nav-item">
+        <a mat-list-item [routerLink]="nav.url"
+           *ngFor="let nav of fillerNav">{{nav.name}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

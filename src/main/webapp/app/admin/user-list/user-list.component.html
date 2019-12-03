@@ -5,7 +5,7 @@
       <button mat-icon-button (click)="syncStudents()">
         <mat-icon>sync</mat-icon>
       </button>
-      <button mat-icon-button routerLink="/add">
+      <button mat-icon-button routerLink="add">
         <mat-icon>person_add</mat-icon>
       </button>
     </mat-card-title>
@@ -22,7 +22,7 @@
           <td><div class="align-center">{{student.name}}</div></td>
           <td><div class="align-center">{{student.value}}</div></td>
           <td><div class="align-center">
-            <button mat-icon-button [routerLink]="['/edit', student.id]">
+            <button mat-icon-button [routerLink]="['edit', student.id]">
               <mat-icon>edit</mat-icon>
             </button>
             <span style="width: 5px"></span>

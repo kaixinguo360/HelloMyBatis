@@ -12,16 +12,28 @@ import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MaterialModules} from './material-modules.module';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {AddComponent} from './add/add.component';
-import {EditComponent} from './edit/edit.component';
+import {CarListComponent} from './admin/car-list/car-list.component';
+import {SysSettingComponent} from './admin/sys-setting/sys-setting.component';
+import {UserListComponent} from './admin/user-list/user-list.component';
+import {UserAddComponent} from './admin/user-add/user-add.component';
+import {UserEditComponent} from './admin/user-edit/user-edit.component';
+import {UserInfoComponent} from './user/user-info/user-info.component';
+import {UserCarComponent} from './user/user-car/user-car.component';
+import {UserSettingComponent} from './user/user-setting/user-setting.component';
+import {UserMapComponent} from './user/user-map/user-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    AddComponent,
-    EditComponent
+    CarListComponent,
+    SysSettingComponent,
+    UserListComponent,
+    UserAddComponent,
+    UserEditComponent,
+    UserInfoComponent,
+    UserCarComponent,
+    UserSettingComponent,
+    UserMapComponent
   ],
   imports: [
     BrowserModule,

@@ -3,17 +3,17 @@ import {Component, OnInit} from '@angular/core';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {Student, StudentService} from '../student.service';
+import {Student, StudentService} from '../../student.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
 })
-export class DashboardComponent implements OnInit {
-  
+export class UserListComponent implements OnInit {
+
   public students: Student[] = [];
-  
+
   public remove(student: Student) {
     if (confirm(`您确定要删除用户"${student.name}"吗?`)) {
       this.service.remove(student.id).pipe(
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
       ).subscribe();
     }
   }
-  
+
   public syncStudents() {
     this.service.getAll().pipe(
       tap(students => this.students = students),
