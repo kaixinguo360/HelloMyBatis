@@ -44,8 +44,14 @@ public class UserController {
 
     @Authorization(isAdmin = true)
     @RequestMapping(method = RequestMethod.GET)
-    public List<User> get() throws InternalException {
+    public List<User> getAll() throws InternalException {
         return userService.getAll();
+    }
+
+    @Authorization(isAdmin = true)
+    @RequestMapping(value = "/parked", method = RequestMethod.GET)
+    public List<User> getAllParked() throws InternalException {
+        return userService.getAllParked();
     }
 
     @Authorization(isAdmin = true)

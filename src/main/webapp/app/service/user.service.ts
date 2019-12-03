@@ -12,6 +12,7 @@ export interface User {
   parked?: boolean,
   credit?: number,
   passwd?: string,
+  enterTime?: number,
 }
 
 @Injectable({
@@ -47,6 +48,14 @@ export class UserService {
 
   public getAll(): Observable<User[]> {
     return this.apiService.get<User[]>(this.root).pipe(
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
+  public getAllParked(): Observable<User[]> {
+    return this.apiService.get<User[]>(this.root + '/parked').pipe(
       catchError(err => {
         return throwError(err);
       })

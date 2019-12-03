@@ -7,7 +7,8 @@ class User(
     var tel: String? = null,
     var parked: Boolean? = null,
     var credit: Double? = null,
-    var passwd: String? = null
+    var passwd: String? = null,
+    var enterTime: Long? = null
 ) {
     override fun toString(): String {
         return "User[$id,$name,$car]"

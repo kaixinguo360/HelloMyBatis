@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserMapper {
 
     @Insert("INSERT INTO user(" +
-        "name, car, tel, parked, credit, passwd" +
+        "name, car, tel, parked, credit, passwd, enterTime" +
         ") VALUES (" +
-        "#{name}, #{car}, #{tel}, #{parked}, #{credit}, #{passwd}" +
+        "#{name}, #{car}, #{tel}, #{parked}, #{credit}, #{passwd}, #{enterTime}" +
         ")")
     void insert(User user);
 
@@ -37,6 +37,7 @@ public interface UserMapper {
         "parked = #{new.parked}," +
         "credit = #{new.credit}," +
         "passwd = #{new.passwd}" +
+        "enterTime = #{new.enterTime}" +
         "WHERE id = #{id}")
     void update(@Param("id") int id, @Param("new") User user);
 }

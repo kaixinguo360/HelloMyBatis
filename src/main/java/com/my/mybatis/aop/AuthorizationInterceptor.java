@@ -46,8 +46,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         Token tokenEntity = new Token();
         tokenEntity.setToken(token);
 
-        if (tokenService.checkToken(tokenEntity) &&
-            (!a.isAdmin() || (a.isAdmin() && tokenEntity.getUser().equals("admin")))) {
+        if (tokenService.checkToken(tokenEntity)) {
+            if (a.isAdmin() && tokenEntity.getUser().getId() != 1) {
+                throw new RequestException("Unauthorized", HttpStatus.UNAUTHORIZED);
+            }
             request.setAttribute(Constants.CURRENT_TOKEN, tokenEntity);
             request.setAttribute(Constants.CURRENT_USER, tokenEntity.getUser());
             return true;
