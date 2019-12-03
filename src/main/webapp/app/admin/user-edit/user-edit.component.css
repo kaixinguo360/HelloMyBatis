@@ -13,3 +13,9 @@
   display: flex;
   justify-content: center;
 }
+
+.title-id {
+  font-size: 18px;
+  color: gray;
+  margin-left: 10px;
+}

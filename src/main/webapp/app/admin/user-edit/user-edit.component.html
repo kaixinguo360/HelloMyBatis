@@ -1,27 +1,41 @@
 <div class="root">
   <mat-card class="card">
     <mat-card-title class="title-box">
-      编辑用户
+      编辑用户<span class="title-id">id: {{user.id}}</span>
     </mat-card-title>
     <mat-card-content>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput [(ngModel)]="student.id" placeholder="车牌号">
+            <input [(ngModel)]="user.name" required matInput placeholder="用户名">
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput [(ngModel)]="student.name" placeholder="用户名">
+            <input [(ngModel)]="user.car" required matInput placeholder="车牌号">
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput [(ngModel)]="student.value" min="0" max="200" type="number" placeholder="余额">
+            <input [(ngModel)]="user.tel" matInput placeholder="电话">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.credit" required matInput min="0" max="100000" type="number" placeholder="余额">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.passwd" required matInput type="password" placeholder="密码">
           </mat-form-field>
         </div>
       </div>

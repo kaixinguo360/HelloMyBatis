@@ -12,15 +12,17 @@
     <div>
       <table style="width: 100%">
         <tr>
-          <th>车牌号</th>
           <th>用户名</th>
+          <th>车牌号</th>
+          <th>电话</th>
           <th>余额</th>
           <th style="width: 100px">操作</th>
         </tr>
         <tr *ngFor="let student of students">
-          <td><div class="align-center">{{student.id}}</div></td>
           <td><div class="align-center">{{student.name}}</div></td>
-          <td><div class="align-center">{{student.value}}</div></td>
+          <td><div class="align-center">{{student.car}}</div></td>
+          <td><div class="align-center">{{student.tel?student.tel:'N/A'}}</div></td>
+          <td><div class="align-center">{{student.credit}}</div></td>
           <td><div class="align-center">
             <button mat-icon-button [routerLink]="['edit', student.id]">
               <mat-icon>edit</mat-icon>

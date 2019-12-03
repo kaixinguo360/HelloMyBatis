@@ -8,13 +8,16 @@ import {CarListComponent} from './admin/car-list/car-list.component';
 import {UserListComponent} from './admin/user-list/user-list.component';
 import {UserAddComponent} from './admin/user-add/user-add.component';
 import {UserEditComponent} from './admin/user-edit/user-edit.component';
+
 import {UserInfoComponent} from './user/user-info/user-info.component';
 import {UserCarComponent} from './user/user-car/user-car.component';
 import {UserMapComponent} from './user/user-map/user-map.component';
 import {UserSettingComponent} from './user/user-setting/user-setting.component';
 
+import {LoginComponent} from './login/login.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: LoginComponent },
   { path: 'admin', redirectTo: 'admin/cars', pathMatch: 'full' },
   { path: 'admin/users', component: UserListComponent },
   { path: 'admin/cars', component: CarListComponent },

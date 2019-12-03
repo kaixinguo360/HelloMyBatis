@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+mat-sidenav {
+  width: 200px;
+}
+
 .full-width {
   width: 100%;
 }

@@ -21,6 +21,7 @@ import {UserInfoComponent} from './user/user-info/user-info.component';
 import {UserCarComponent} from './user/user-car/user-car.component';
 import {UserSettingComponent} from './user/user-setting/user-setting.component';
 import {UserMapComponent} from './user/user-map/user-map.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {UserMapComponent} from './user/user-map/user-map.component';
     UserInfoComponent,
     UserCarComponent,
     UserSettingComponent,
-    UserMapComponent
+    UserMapComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

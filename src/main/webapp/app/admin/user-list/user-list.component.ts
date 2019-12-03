@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {Student, StudentService} from '../../student.service';
+import {User, UserService} from '../../user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,11 +12,11 @@ import {Student, StudentService} from '../../student.service';
 })
 export class UserListComponent implements OnInit {
 
-  public students: Student[] = [];
+  public students: User[] = [];
 
-  public remove(student: Student) {
-    if (confirm(`您确定要删除用户"${student.name}"吗?`)) {
-      this.service.remove(student.id).pipe(
+  public remove(user: User) {
+    if (confirm(`您确定要删除用户"${user.name}"吗?`)) {
+      this.service.remove(user.id).pipe(
         tap(() => this.syncStudents()),
         catchError(err => {
           alert("删除用户时出错!");
@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
   }
 
   constructor(
-    private service: StudentService
+    private service: UserService
   ) { }
 
   ngOnInit() {

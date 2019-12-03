@@ -1,7 +1,7 @@
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 
 class Nav {
   name: string;
@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
   private _mobileQueryListener: () => void;
   public title = '智能停车场管理系统';
 
-  back() {
-    this.location.back();
+  logout() {
+    location.href = '/';
   }
   
   constructor(
@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-
+  
+  @ViewChild('snav') snav;
   ngOnInit() {
     if (location.pathname.indexOf('/user') == 0) {
       this.fillerNav = [
@@ -43,12 +44,14 @@ export class AppComponent implements OnInit {
         { name: '附近停车场', url: 'user/map' },
         { name: '编辑信息', url: 'user/settings' },
       ];
+      if (!this.mobileQuery.matches) this.snav.open();
     } else if (location.pathname.indexOf('/admin') == 0) {
       this.fillerNav = [
         { name: '车辆信息', url: 'admin/cars' },
         { name: '用户信息', url: 'admin/users' },
         { name: '系统设置', url: 'admin/settings' },
       ];
+      if (!this.mobileQuery.matches) this.snav.open();
     }
   }
 

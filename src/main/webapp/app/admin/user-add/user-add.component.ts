@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 
 import {catchError, tap} from 'rxjs/operators';
 
-import {Student, StudentService} from '../../student.service';
+import {User, UserService} from '../../user.service';
 import {of} from 'rxjs';
 
 @Component({
@@ -12,12 +12,24 @@ import {of} from 'rxjs';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-
-  public add(id: string, name: string, age: string) {
-    const student: Student = { id: id, name: name, value: Number(age) };
-    this.service.add(student).pipe(
+  
+  public user: User = {
+    name: '',
+    car: '',
+    tel: '',
+    credit: 0,
+    passwd: '',
+  };
+  
+  public add() {
+    const user = this.user;
+    if (!(user.name && user.car && user.passwd)) {
+      alert("请输入必填内容");
+      return;
+    }
+    this.service.add(this.user).pipe(
       tap(() => {
-        this.router.navigate([ '/']);
+        this.router.navigate([ '/admin/users']);
       }),
       catchError(err => {
         alert("添加失败!\n\n错误信息:\n" + err.error.message);
@@ -27,7 +39,7 @@ export class UserAddComponent implements OnInit {
   }
 
   constructor(
-    private service: StudentService,
+    private service: UserService,
     private router: Router
   ) { }
 

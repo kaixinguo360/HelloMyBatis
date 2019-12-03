@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {Student, StudentService} from '../../student.service';
+import {User, UserService} from '../../user.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -13,13 +13,25 @@ import {Student, StudentService} from '../../student.service';
 })
 export class UserEditComponent implements OnInit {
 
-  private id: string;
-  public student: Student = { id: '', name: '', value: 0 };
+  public user: User = {
+    id: 0,
+    name: '',
+    car: '',
+    tel: '',
+    parked: false,
+    credit: 0,
+    passwd: '',
+  };
 
   public save() {
-    this.service.modify(this.id, this.student).pipe(
+    const user = this.user;
+    if (!(user.name && user.car && user.passwd)) {
+      alert("请输入必填内容");
+      return;
+    }
+    this.service.modify(this.user.id, this.user).pipe(
       tap(() => {
-        this.router.navigate([ '/']);
+        this.router.navigate([ '/admin/users']);
       }),
       catchError(err => {
         alert("保存失败!\n\n错误信息:\n" + err.error.message);
@@ -29,15 +41,15 @@ export class UserEditComponent implements OnInit {
   }
 
   constructor(
-    private service: StudentService,
+    private service: UserService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.service.get(this.id).pipe(
-      tap(students => this.student = students),
+    this.user.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.service.get(this.user.id).pipe(
+      tap(students => this.user = students),
       catchError(err => {
         alert("获取学生列表出错, 请稍后刷新重试!");
         return of(err);
