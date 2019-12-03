@@ -2,6 +2,7 @@ import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AuthService} from './service/auth.service';
 
 class Nav {
   name: string;
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   public title = '智能停车场管理系统';
 
   logout() {
+    this.authService.logout();
     location.href = '/';
   }
   
@@ -28,7 +30,8 @@ export class AppComponent implements OnInit {
     private location: Location,
     public router: Router,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    private authService: AuthService,
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

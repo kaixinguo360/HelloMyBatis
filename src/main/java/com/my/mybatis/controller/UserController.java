@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Authorization
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -18,12 +17,14 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Authorization(isAdmin = true)
     @RequestMapping(method = RequestMethod.POST)
     public User add(@RequestBody User user) throws InternalException {
         userService.add(user);
         return user;
     }
 
+    @Authorization(isAdmin = true)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public User remove(@PathVariable int id) {
         User user = userService.get(id);
@@ -41,14 +42,24 @@ public class UserController {
         }
     }
 
+    @Authorization(isAdmin = true)
     @RequestMapping(method = RequestMethod.GET)
     public List<User> get() throws InternalException {
         return userService.getAll();
     }
 
+    @Authorization(isAdmin = true)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public User modify(@PathVariable int id, @RequestBody User user) throws InternalException {
         userService.modify(id, user);
         return user;
+    }
+
+    @RequestMapping(path = "/check", method = RequestMethod.GET)
+    public MessageResponse checkUser(@RequestParam String name, @RequestParam String password) {
+        if(name != null && password != null && userService.checkUser(name, password))
+            return new MessageResponse("Success!");
+        else
+            return new MessageResponse("Error!");
     }
 }

@@ -36,6 +36,8 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (bean.getAnnotation(Authorization.class) == null && method.getAnnotation(Authorization.class) == null){
             return true;
         }
+        Authorization a = (Authorization) bean.getAnnotation(Authorization.class);
+        if (a == null)  a = (Authorization) method.getAnnotation(Authorization.class);
 
         String token = request.getHeader(Constants.AUTHORIZATION);
         if (token == null) {
@@ -44,7 +46,8 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         Token tokenEntity = new Token();
         tokenEntity.setToken(token);
 
-        if (tokenService.checkToken(tokenEntity)) {
+        if (tokenService.checkToken(tokenEntity) &&
+            (!a.isAdmin() || (a.isAdmin() && tokenEntity.getUser().equals("admin")))) {
             request.setAttribute(Constants.CURRENT_TOKEN, tokenEntity);
             request.setAttribute(Constants.CURRENT_USER, tokenEntity.getUser());
             return true;

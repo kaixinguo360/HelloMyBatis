@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators/catchError';
+import {ApiService} from './api.service';
 
 export interface User {
   id?: number,
@@ -19,10 +19,10 @@ export interface User {
 })
 export class UserService {
 
-  private root = '/api/user';
+  private root = 'user';
 
   public add(user: User): Observable<User> {
-    return this.http.post<User>(this.root, user).pipe(
+    return this.apiService.post<User>(this.root, user).pipe(
       catchError(err => {
         return throwError(err);
       })
@@ -30,7 +30,7 @@ export class UserService {
   }
 
   public remove(id: number): Observable<User> {
-    return this.http.request<User>('delete', this.root + '/' + id).pipe(
+    return this.apiService.request<User>('delete', this.root + '/' + id).pipe(
       catchError(err => {
         return throwError(err);
       })
@@ -38,7 +38,7 @@ export class UserService {
   }
 
   public get(id: number): Observable<User> {
-    return this.http.get<User>(this.root + '/' + id).pipe(
+    return this.apiService.get<User>(this.root + '/' + id).pipe(
       catchError(err => {
         return throwError(err);
       })
@@ -46,7 +46,7 @@ export class UserService {
   }
 
   public getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.root).pipe(
+    return this.apiService.get<User[]>(this.root).pipe(
       catchError(err => {
         return throwError(err);
       })
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   public modify(id: number, user: User): Observable<User> {
-    return this.http.put<User>(this.root + '/' + id, user).pipe(
+    return this.apiService.put<User>(this.root + '/' + id, user).pipe(
       catchError(err => {
         return throwError(err);
       })
@@ -62,6 +62,6 @@ export class UserService {
   }
 
   constructor(
-    private http: HttpClient
+    private apiService: ApiService
   ) { }
 }

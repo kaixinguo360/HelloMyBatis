@@ -3,6 +3,7 @@ package com.my.mybatis.service;
 import com.my.mybatis.mapper.User;
 import com.my.mybatis.mapper.UserMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -38,8 +39,23 @@ public class UserService {
     public List<User> getAll() {
         return userMapper.selectAll();
     }
-    
+
+    public User getByName(String name) {
+        return userMapper.selectByName(name);
+    }
     public List<User> getAllParked() {
         return userMapper.selectAllParked();
+    }
+    
+    public boolean checkUser(String name, String password) {
+        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
+            return false;
+        }
+        try {
+            User user = userMapper.selectByName(name);
+            return password.equals(user.getPasswd());
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

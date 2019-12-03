@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {User, UserService} from '../../user.service';
+import {User, UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-user-edit',

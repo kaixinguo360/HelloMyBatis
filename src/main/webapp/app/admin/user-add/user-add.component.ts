@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 
 import {catchError, tap} from 'rxjs/operators';
 
-import {User, UserService} from '../../user.service';
+import {User, UserService} from '../../service/user.service';
 import {of} from 'rxjs';
 
 @Component({

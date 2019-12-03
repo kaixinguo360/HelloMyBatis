@@ -20,6 +20,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE id = #{id}")
     User select(int id);
 
+    @Select("SELECT * FROM user WHERE name = #{name}")
+    User selectByName(String name);
+
     @Select("SELECT * FROM user")
     List<User> selectAll();
 
