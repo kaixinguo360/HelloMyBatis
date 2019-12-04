@@ -1,9 +1,9 @@
 package com.my.mybatis.controller;
 
 import com.my.mybatis.service.UserService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,19 +16,13 @@ public class ParkController {
         this.userService = userService;
     }
 
-    @RequestMapping(path = "/enter", method = RequestMethod.GET)
-    public MessageResponse enter(@RequestParam String name, @RequestParam String password) {
-        if(name != null && password != null && userService.checkUser(name, password))
-            return new MessageResponse("Success!");
-        else
-            return new MessageResponse("Error!");
+    @RequestMapping(path = "/enter/{car}", method = RequestMethod.GET)
+    public MessageResponse enter(@PathVariable String car) throws RequestException {
+        return new MessageResponse(userService.enter(car));
     }
 
-    @RequestMapping(path = "/out", method = RequestMethod.GET)
-    public MessageResponse out(@RequestParam String name, @RequestParam String password) {
-        if(name != null && password != null && userService.checkUser(name, password))
-            return new MessageResponse("Success!");
-        else
-            return new MessageResponse("Error!");
+    @RequestMapping(path = "/out/{car}", method = RequestMethod.GET)
+    public MessageResponse out(@PathVariable String car) throws RequestException {
+        return new MessageResponse(userService.out(car));
     }
 }
