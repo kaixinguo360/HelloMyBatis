@@ -49,7 +49,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.user.id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.get(this.user.id).pipe(
-      tap(students => this.user = students),
+      tap(users => this.user = users),
       catchError(err => {
         alert("获取用户信息出错, 请稍后刷新重试!");
         return of(err);

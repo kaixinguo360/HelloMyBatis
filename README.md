@@ -1,27 +1,26 @@
-# 简单学生管理系统
+# 在线停车场管理系统
 
 后端: StringBoot + MyBatis
 
 前端: Angular
 
-实现了对数据库简单的增删查改功能
-
 ## 界面
-首页
+管理界面
 
-![首页](image/dashboard.png)
+![首页](image/pc1.png)
 
-添加学生
+![添加学生](image/pc2.png)
 
-![添加学生](image/add.png)
+![编辑学生](image/pc3.png)
 
-编辑学生
+用户界面 - 手机版
 
-![编辑学生](image/edit.png)
+![编辑学生](image/mobile1.png)
 
-删除学生
+![编辑学生](image/mobile2.png)
 
-![删除学生](image/delete.png)
+![编辑学生](image/mobile3.png)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 

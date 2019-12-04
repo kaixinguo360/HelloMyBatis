@@ -51,7 +51,7 @@ export class UserSettingComponent implements OnInit {
   ngOnInit() {
     const name = this.authService.getUserName();
     this.userService.getByName(name).pipe(
-      tap(students => this.user = students),
+      tap(users => this.user = users),
       catchError(err => {
         alert("获取用户信息出错, 请稍后刷新重试!");
         return of(err);

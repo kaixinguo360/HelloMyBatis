@@ -18,17 +18,17 @@
           <th>余额</th>
           <th style="width: 100px">操作</th>
         </tr>
-        <tr *ngFor="let student of users">
-          <td><div class="align-center">{{student.name}}</div></td>
-          <td><div class="align-center">{{student.car}}</div></td>
-          <td><div class="align-center">{{student.tel?student.tel:'N/A'}}</div></td>
-          <td><div class="align-center">{{student.credit}}</div></td>
+        <tr *ngFor="let user of users">
+          <td><div class="align-center">{{user.name}}</div></td>
+          <td><div class="align-center">{{user.car}}</div></td>
+          <td><div class="align-center">{{user.tel?user.tel:'N/A'}}</div></td>
+          <td><div class="align-center">{{user.credit}}</div></td>
           <td><div class="align-center">
-            <button mat-icon-button [routerLink]="['edit', student.id]">
+            <button mat-icon-button [routerLink]="['edit', user.id]">
               <mat-icon>edit</mat-icon>
             </button>
             <span style="width: 5px"></span>
-            <button mat-icon-button (click)="remove(student)">
+            <button mat-icon-button (click)="remove(user)">
               <mat-icon>delete</mat-icon>
             </button>
           </div></td>

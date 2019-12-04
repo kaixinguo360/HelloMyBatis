@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit {
 
   public syncUsers() {
     this.service.getAll().pipe(
-      tap(students => this.users = students),
+      tap(users => this.users = users),
       catchError(err => {
         alert("获取用户列表出错, 请稍后刷新重试!");
         return of(err);
