@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.title-box {
+  display: flex;
+}
+
+.title {
+  flex: 1 0 auto;
+}
+
+.info {
+  width: 100%;
+  text-align: center;
+}

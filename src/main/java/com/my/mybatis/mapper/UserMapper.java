@@ -23,6 +23,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE name = #{name}")
     User selectByName(String name);
 
+    @Select("SELECT * FROM user WHERE car = #{car}")
+    User selectByCar(String car);
+
     @Select("SELECT * FROM user")
     List<User> selectAll();
 

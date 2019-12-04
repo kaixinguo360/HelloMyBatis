@@ -2,7 +2,7 @@
   <mat-card class="card">
     <mat-card-title class="title-box">
       <span class="title">用户列表</span>
-      <button mat-icon-button (click)="syncStudents()">
+      <button mat-icon-button (click)="syncUsers()">
         <mat-icon>sync</mat-icon>
       </button>
       <button mat-icon-button routerLink="add">
@@ -18,7 +18,7 @@
           <th>余额</th>
           <th style="width: 100px">操作</th>
         </tr>
-        <tr *ngFor="let student of students">
+        <tr *ngFor="let student of users">
           <td><div class="align-center">{{student.name}}</div></td>
           <td><div class="align-center">{{student.car}}</div></td>
           <td><div class="align-center">{{student.tel?student.tel:'N/A'}}</div></td>

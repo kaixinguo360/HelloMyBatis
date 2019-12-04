@@ -38,7 +38,7 @@ public class UserController {
         if (user != null) {
             return user;
         } else {
-            throw new InternalException("找不到学号为" + id + "的学生数据");
+            throw new InternalException("找不到ID为" + id + "的用户数据");
         }
     }
 

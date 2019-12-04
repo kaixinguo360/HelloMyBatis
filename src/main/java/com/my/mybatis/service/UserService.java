@@ -1,10 +1,13 @@
 package com.my.mybatis.service;
 
+import com.my.mybatis.controller.RequestException;
 import com.my.mybatis.mapper.User;
 import com.my.mybatis.mapper.UserMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -57,5 +60,21 @@ public class UserService {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    public String enter(String car) throws RequestException {
+        User user = userMapper.selectByCar(car);
+        if (user == null) {
+            throw new RequestException("没有这个用户!", HttpStatus.UNAUTHORIZED);
+        }
+        if (user.getParked()) {
+            throw new RequestException("已在停车场内!", HttpStatus.UNAUTHORIZED);
+        }
+        if (user.getCredit() <= 0) {
+            throw new RequestException("账户余额不足!", HttpStatus.UNAUTHORIZED);
+        }
+        user.setParked(true);
+        user.setEnterTime(new Date());
+        return "验证通过,允许进入停车场!";
     }
 }

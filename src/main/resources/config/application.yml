@@ -9,3 +9,6 @@ spring:
         password: 1234567
     jpa:
         show-sql: true
+    jackson:
+        serialization:
+            write-dates-as-timestamps: true

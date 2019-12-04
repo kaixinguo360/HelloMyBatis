@@ -12,7 +12,7 @@ export interface User {
   parked?: boolean,
   credit?: number,
   passwd?: string,
-  enterTime?: string,
+  enterTime?: number,
 }
 
 @Injectable({

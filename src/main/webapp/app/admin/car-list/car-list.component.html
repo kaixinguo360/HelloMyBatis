@@ -2,11 +2,8 @@
   <mat-card class="card">
     <mat-card-title class="title-box">
       <span class="title">停车场概况</span>
-      <button mat-icon-button (click)="syncStudents()">
+      <button mat-icon-button (click)="syncUsers()">
         <mat-icon>sync</mat-icon>
-      </button>
-      <button mat-icon-button routerLink="add">
-        <mat-icon>person_add</mat-icon>
       </button>
     </mat-card-title>
     <div>
@@ -15,16 +12,16 @@
           <th>车牌号</th>
           <th>车主</th>
           <th style="min-width: 100px;">进入时间</th>
-          <th>时长/H</th>
-          <th>费用/RMB</th>
+          <th>时长(小时)</th>
+          <th>费用(元)</th>
           <th style="width: 100px">操作</th>
         </tr>
         <tr *ngFor="let user of users">
           <td><div class="align-center">{{user.car}}</div></td>
           <td><div class="align-center">{{user.name}}</div></td>
-          <td><div class="align-center">{{format(user.enterTime)}}</div></td>
-          <td><div class="align-center">{{time(user.enterTime)}}</div></td>
-          <td><div class="align-center">{{value(user.enterTime)}}</div></td>
+          <td><div class="align-center">{{parkService.format(user.enterTime)}}</div></td>
+          <td><div class="align-center">{{parkService.getParkHour(user.enterTime)}}</div></td>
+          <td><div class="align-center">{{parkService.getMoney(user.enterTime)|async}}</div></td>
           <td><div class="align-center">
             <button mat-icon-button [routerLink]="['../users/edit', user.id]">
               <mat-icon>edit</mat-icon>

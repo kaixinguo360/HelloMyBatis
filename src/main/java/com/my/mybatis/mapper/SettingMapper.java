@@ -13,9 +13,9 @@ public interface SettingMapper {
     @Select("SELECT * FROM system")
     List<Setting> getAll();
     
-    @Select("SELECT value FROM system WHERE id = #{id}")
-    String get(String id);
+    @Select("SELECT value FROM `system` WHERE `key` = #{key}")
+    String get(String key);
 
-    @Update("UPDATE system SET value = #{value} WHERE key = #{key}")
+    @Update("UPDATE `system` SET `value` = #{value} WHERE `key` = #{key}")
     void set(@Param("key") String key, @Param("value") String value);
 }

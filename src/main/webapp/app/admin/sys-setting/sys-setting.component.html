@@ -1,3 +1,19 @@
-<p>
-  sys-setting works!
-</p>
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      <span class="title">系统设置</span>
+      <button mat-icon-button (click)="save()" [disabled]="saving">
+        <mat-icon>save</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="settings['price']" required matInput min="0" max="100000" type="number" placeholder="收费标准 (元/小时)">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,6 +1,6 @@
 package com.my.mybatis.mapper
 
-import java.sql.Timestamp
+import java.util.*
 
 class User(
     var id: Int? = null,
@@ -10,7 +10,7 @@ class User(
     var parked: Boolean? = null,
     var credit: Double? = null,
     var passwd: String? = null,
-    var enterTime: Timestamp? = null
+    var enterTime: Date? = null
 ) {
     override fun toString(): String {
         return "User[$id,$name,$car]"
