@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
     this.service.get(this.user.id).pipe(
       tap(students => this.user = students),
       catchError(err => {
-        alert("获取学生列表出错, 请稍后刷新重试!");
+        alert("获取用户信息出错, 请稍后刷新重试!");
         return of(err);
       })
     ).subscribe();

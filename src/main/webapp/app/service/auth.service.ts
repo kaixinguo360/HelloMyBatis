@@ -24,7 +24,7 @@ export class AuthService {
     this.apiService.post<Token>(`token?name=${name}&password=${password}`, null, false).pipe(
       tap(token => {
         this.storageService.set('token', token.token);
-        this.storageService.set('is-admin', name=='admin'?'true':null);
+        this.storageService.set('user-name', name);
         subject.next(token.token);
       }),
       catchError(err => {
@@ -55,16 +55,20 @@ export class AuthService {
   }
   
   public isAdmin(): boolean {
-    return Boolean(this.storageService.get('is-admin'));
+    return this.getUserName() == "admin";
   }
 
   public getToken(): string {
     return this.storageService.get('token');
   }
 
+  public getUserName(): string {
+    return this.storageService.get('user-name');
+  }
+
   public clearToken() {
     this.storageService.set('token', null);
-    this.storageService.set('is-admin', null);
+    this.storageService.set('user-name', null);
   }
 
   constructor(

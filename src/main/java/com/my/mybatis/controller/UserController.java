@@ -3,6 +3,7 @@ package com.my.mybatis.controller;
 import com.my.mybatis.mapper.User;
 import com.my.mybatis.service.InternalException;
 import com.my.mybatis.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,16 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    public User getByName(@PathVariable String name) throws InternalException {
+        User user = userService.getByName(name);
+        if (user != null) {
+            return user;
+        } else {
+            throw new InternalException("找不到名称为" + name + "的用户数据");
+        }
+    }
+
     @Authorization(isAdmin = true)
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAll() throws InternalException {
@@ -54,9 +65,12 @@ public class UserController {
         return userService.getAllParked();
     }
 
-    @Authorization(isAdmin = true)
+    @Authorization()
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public User modify(@PathVariable int id, @RequestBody User user) throws InternalException {
+    public User modify(@PathVariable int id, @RequestBody User user,  @CurrentUser User currentUser) throws InternalException, RequestException {
+        if (currentUser.getId() != 1 && currentUser.getId() != id) {
+            throw new RequestException("Unauthorized!", HttpStatus.UNAUTHORIZED);
+        }
         userService.modify(id, user);
         return user;
     }

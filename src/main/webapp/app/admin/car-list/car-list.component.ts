@@ -29,11 +29,7 @@ export class CarListComponent implements OnInit , OnDestroy {
 
   public syncUsers() {
     this.userService.getAllParked().pipe(
-      tap(students => this.users = students),
-      catchError(err => {
-        alert("获取用户列表出错, 请稍后刷新重试!");
-        return of(err);
-      })
+      tap(students => this.users = students)
     ).subscribe();
   }
 

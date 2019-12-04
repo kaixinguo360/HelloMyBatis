@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (location.pathname.indexOf('/user') == 0) {
       this.fillerNav = [
-        { name: '用户信息', url: 'user/info' },
+        { name: '个人信息', url: 'user/info' },
         { name: '车辆信息', url: 'user/car' },
         { name: '附近停车场', url: 'user/map' },
         { name: '编辑信息', url: 'user/settings' },

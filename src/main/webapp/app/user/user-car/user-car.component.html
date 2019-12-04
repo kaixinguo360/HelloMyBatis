@@ -1,3 +1,18 @@
-<p>
-  user-car works!
-</p>
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      <mat-icon>directions_car</mat-icon> 车辆信息
+    </mat-card-title>
+    <mat-card-content>
+      <div class="item full-width">车牌号: <b>{{user.car}}</b></div>
+      <div class="item full-width">联系电话: <b>{{user.tel?user.tel:'N/A'}}</b></div>
+      <div class="item full-width" *ngIf="!user.parked">未停放在停车场</div>
+      <div *ngIf="user.parked">
+        <div class="item full-width">于<b> {{parkService.format(user.enterTime)}} </b>进入停车场</div>
+        <div class="item full-width">资费标准: <b>{{parkService.getPrice()|async}}</b>元/小时</div>
+        <div class="item full-width">已停放时间: <b>{{parkService.getParkHour(user.enterTime)}}</b>小时</div>
+        <div class="item full-width">产生费用: <b>{{parkService.getMoney(user.enterTime)|async}}元</b></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -46,6 +46,14 @@ export class UserService {
     );
   }
 
+  public getByName(name: string): Observable<User> {
+    return this.apiService.get<User>(this.root + '/name/' + name).pipe(
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
   public getAll(): Observable<User[]> {
     return this.apiService.get<User[]>(this.root).pipe(
       catchError(err => {

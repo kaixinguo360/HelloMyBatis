@@ -1,3 +1,12 @@
-<p>
-  user-info works!
-</p>
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      <mat-icon>person</mat-icon> 用户信息
+    </mat-card-title>
+    <mat-card-content>
+      <div class="item full-width">用户名: <b>{{user.car}}</b></div>
+      <div class="item full-width">联系电话: <b>{{user.tel?user.tel:'未设置'}}</b></div>
+      <div class="item full-width">账户余额: <b>{{user.credit}}元</b></div>
+    </mat-card-content>
+  </mat-card>
+</div>

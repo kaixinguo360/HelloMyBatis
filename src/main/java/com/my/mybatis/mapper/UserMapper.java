@@ -33,14 +33,14 @@ public interface UserMapper {
     List<User> selectAllParked();
 
     @Update("UPDATE user SET " +
-        "id = #{new.id}," +
-        "name = #{new.name}," +
-        "car = #{new.car}," +
-        "tel = #{new.tel}," +
-        "parked = #{new.parked}," +
-        "credit = #{new.credit}," +
-        "passwd = #{new.passwd}," +
-        "enterTime = #{new.enterTime}" +
-        "WHERE id = #{id}")
+        "`id` = #{new.id}," +
+        "`name` = #{new.name}," +
+        "`car` = #{new.car}," +
+        "`tel` = #{new.tel}," +
+        "`parked` = #{new.parked}," +
+        "`credit` = #{new.credit}," +
+        "`passwd` = #{new.passwd}," +
+        "`enterTime` = #{new.enterTime} " +
+        "WHERE `id` = #{id}")
     void update(@Param("id") int id, @Param("new") User user);
 }
