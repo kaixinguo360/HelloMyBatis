@@ -1,10 +1,7 @@
 package com.my.mybatis.controller;
 
 import com.my.mybatis.service.UserService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/park")
@@ -17,12 +14,12 @@ public class ParkController {
     }
 
     @RequestMapping(path = "/enter/{car}", method = RequestMethod.GET)
-    public MessageResponse enter(@PathVariable String car) throws RequestException {
-        return new MessageResponse(userService.enter(car));
+    public MessageResponse enter(@PathVariable String car, @RequestParam String key) {
+        return new MessageResponse(userService.enter(car, key));
     }
 
     @RequestMapping(path = "/out/{car}", method = RequestMethod.GET)
-    public MessageResponse out(@PathVariable String car) throws RequestException {
-        return new MessageResponse(userService.out(car));
+    public MessageResponse out(@PathVariable String car, @RequestParam String key) {
+        return new MessageResponse(userService.out(car, key));
     }
 }

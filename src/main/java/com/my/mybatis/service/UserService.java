@@ -1,9 +1,7 @@
 package com.my.mybatis.service;
 
-import com.my.mybatis.controller.RequestException;
 import com.my.mybatis.mapper.User;
 import com.my.mybatis.mapper.UserMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -64,42 +62,52 @@ public class UserService {
         }
     }
 
-    public String enter(String car) throws RequestException {
+    public String enter(String car, String key) {
+        if (!(key != null && key.equals(systemService.get("apikey")))) {
+            return "API密钥校验失败!";
+        }
         User user = userMapper.selectByCar(car);
         if (user == null) {
-            throw new RequestException("没有这个用户!", HttpStatus.NOT_FOUND);
+            return "没有这个用户!";
         }
         if (user.getParked()) {
-            throw new RequestException("已在停车场内!", HttpStatus.NOT_FOUND);
+            return "已在停车场内!";
         }
         if (user.getCredit() <= 0) {
-            throw new RequestException("账户余额不足, 请先充值!", HttpStatus.UNAUTHORIZED);
+            return "账户余额不足, 请先充值!";
         }
         user.setParked(true);
         user.setEnterTime(new Date());
         userMapper.update(user.getId(), user);
         return "验证通过,欢迎进入停车场!";
     }
-    public String out(String car) throws RequestException {
+    public String out(String car, String key) {
+        if (!(key != null && key.equals(systemService.get("apikey")))) {
+            return "API密钥校验失败!";
+        }
         User user = userMapper.selectByCar(car);
         if (user == null) {
-            throw new RequestException("没有这个用户!", HttpStatus.NOT_FOUND);
+            return "没有这个用户!";
         }
         if (!user.getParked()) {
-            throw new RequestException("不在停车场内!", HttpStatus.NOT_FOUND);
+            return "不在停车场内!";
         }
         long now = new Date().getTime();
         long enterTime = user.getEnterTime().getTime();
         double price = Double.valueOf(systemService.get("price"));
-        double hours = (now - enterTime) / 3600000;
-        double charge = hours * price;
+        double hours = floor((now - enterTime) / 3600000.0);
+        double charge = floor(hours * price);
         if (user.getCredit() - charge <= 0) {
-            throw new RequestException("账户余额不足, 请先充值!", HttpStatus.UNAUTHORIZED);
+            return "账户余额不足, 请先充值!";
         }
         user.setParked(false);
         user.setEnterTime(new Date());
         user.setCredit(user.getCredit() - charge);
         userMapper.update(user.getId(), user);
         return "验证通过,允许驶出停车场!本次停放"+hours+"小时, 收费"+charge+"元";
+    }
+    
+    private double floor(double num) {
+        return Math.floor(num*100)/100.0;
     }
 }

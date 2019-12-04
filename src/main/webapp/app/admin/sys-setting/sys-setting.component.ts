@@ -34,7 +34,8 @@ export class SysSettingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.settings['price'] = 1;
+    this.settings['price'] = 0;
+    this.settings['apikey'] = '';
     this.systemService.getAll().pipe(
       tap(s => this.settings = s)
     ).subscribe();

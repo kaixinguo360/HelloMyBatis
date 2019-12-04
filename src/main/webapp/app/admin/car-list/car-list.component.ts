@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
@@ -11,7 +11,7 @@ import {ParkService} from '../../service/park.service';
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.css']
 })
-export class CarListComponent implements OnInit {
+export class CarListComponent implements OnInit , OnDestroy {
 
   public users: User[] = [];
   
@@ -42,8 +42,15 @@ export class CarListComponent implements OnInit {
     public parkService: ParkService
   ) { }
 
+  private interval;
   ngOnInit() {
     this.syncUsers();
+    const that = this;
+    this.interval = setInterval(function() { that.syncUsers() }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.interval) clearInterval(this.interval);
   }
 
 }
