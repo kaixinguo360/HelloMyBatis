@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../service/auth.service';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {SystemService} from '../../service/system.service';
 
 @Component({
   selector: 'app-user-info',
@@ -21,12 +22,23 @@ export class UserInfoComponent implements OnInit {
     credit: 0,
     passwd: '',
   };
+
+  public recharge() {
+    this.systemService.getSettings('recharge_url').pipe(
+      tap(url => {
+        if (url) {
+          location.href = url
+        }
+      })
+    ).subscribe();
+  }
   
   constructor(
-    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
+    private userService: UserService,
     private authService: AuthService,
+    private systemService: SystemService,
   ) { }
 
   ngOnInit() {

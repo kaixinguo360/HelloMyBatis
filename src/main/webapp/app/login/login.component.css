@@ -25,8 +25,19 @@
   justify-content: center;
 }
 
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.register {
+  font-size: 14px;
+  margin-top: -16px;
+}
+
 .icon {
   font-size: 80px;
+  margin-top: -6px;
 }
 
 .row {

@@ -22,6 +22,7 @@ import {UserCarComponent} from './user/user-car/user-car.component';
 import {UserSettingComponent} from './user/user-setting/user-setting.component';
 import {UserMapComponent} from './user/user-map/user-map.component';
 import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {LoginComponent} from './login/login.component';
     UserCarComponent,
     UserSettingComponent,
     UserMapComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

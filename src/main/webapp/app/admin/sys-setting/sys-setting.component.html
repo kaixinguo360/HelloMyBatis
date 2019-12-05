@@ -17,7 +17,28 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input [(ngModel)]="settings['apikey']" required matInput placeholder="API密钥">
+            <input [(ngModel)]="settings['api_key']" matInput placeholder="API密钥">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="settings['map_url']" matInput placeholder="地图服务接口">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="settings['recharge_url']" matInput placeholder="充值服务接口">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="settings['gate_url']" matInput placeholder="门禁服务接口">
           </mat-form-field>
         </div>
       </div>

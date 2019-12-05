@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {SystemService} from '../../service/system.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-map',
@@ -7,10 +9,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserMapComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private systemService: SystemService
+  ) { }
 
   ngOnInit() {
-    location.href = 'https://map.qq.com/m/place/result/city=%E9%9D%92%E5%B2%9B%E5%B8%82&word=%25E5%2581%259C%25E8%25BD%25A6%25E5%259C%25BA';
+    this.systemService.getSettings("map_url").pipe(
+      tap(url => {
+        console.log(url)
+        location.href = url;
+      })
+    ).subscribe();
   }
 
 }

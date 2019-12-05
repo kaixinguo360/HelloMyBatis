@@ -12,10 +12,12 @@ import java.util.List;
 public class UserService {
 
     private final UserMapper userMapper;
+    private final GateService gateService;
     private final SystemService systemService;
 
-    public UserService(UserMapper userMapper, SystemService systemService) {
+    public UserService(UserMapper userMapper, GateService gateService, SystemService systemService) {
         this.userMapper = userMapper;
+        this.gateService = gateService;
         this.systemService = systemService;
     }
 
@@ -63,7 +65,7 @@ public class UserService {
     }
 
     public String enter(String car, String key) {
-        if (!(key != null && key.equals(systemService.get("apikey")))) {
+        if (!(key != null && key.equals(systemService.get("api_key")))) {
             return "API密钥校验失败!";
         }
         User user = userMapper.selectByCar(car);
@@ -79,10 +81,11 @@ public class UserService {
         user.setParked(true);
         user.setEnterTime(new Date());
         userMapper.update(user.getId(), user);
+        gateService.openGate();
         return "验证通过,欢迎进入停车场!";
     }
     public String out(String car, String key) {
-        if (!(key != null && key.equals(systemService.get("apikey")))) {
+        if (!(key != null && key.equals(systemService.get("api_key")))) {
             return "API密钥校验失败!";
         }
         User user = userMapper.selectByCar(car);
@@ -104,6 +107,7 @@ public class UserService {
         user.setEnterTime(new Date());
         user.setCredit(user.getCredit() - charge);
         userMapper.update(user.getId(), user);
+        gateService.openGate();
         return "验证通过,允许驶出停车场!本次停放"+hours+"小时, 收费"+charge+"元";
     }
     

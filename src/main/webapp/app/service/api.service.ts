@@ -26,11 +26,12 @@ export class ApiService {
     this.authService = authService;
   }
 
-  public get<T>(path: string, params?: { [param: string]: string | string[] }, needAuth: boolean = true): Observable<T> {
+  public get<T>(path: string, params?: { [param: string]: string | string[] }, needAuth: boolean = true, responseType?: string): Observable<T> {
     const headers = needAuth ? { Authorization: this.authService.getToken() } : null;
     return this.http.get<T>(this.root + path, {
       params: params,
-      headers: headers
+      headers: headers,
+      responseType: responseType as 'json',
     }).pipe(
       catchError(err => {
         this.handleError(err, needAuth);

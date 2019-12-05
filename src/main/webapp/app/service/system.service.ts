@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from './user.service';
-import {catchError} from 'rxjs/operators';
-import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
 import {ApiService} from './api.service';
 
 @Injectable({
@@ -9,14 +9,24 @@ import {ApiService} from './api.service';
 })
 export class SystemService {
   
-  private price: number = -1;
+  private cache: Map<string, string> = new Map<string, string>();
 
   public get(key: string): Observable<string> {
-    return this.apiService.get<string>("system/" + key).pipe(
+    return this.apiService.get<string>("system/" + key, { ResponseType: 'text' }, true, 'text').pipe(
       catchError(err => {
         return throwError(err);
       })
     );
+  }
+
+  public getSettings(key: string): Observable<string> {
+    if (this.cache.has(key)) {
+      return of(this.cache.get(key));
+    } else {
+      return this.get(key).pipe(
+        tap(value => this.cache.set(key, value))
+      );
+    }
   }
 
   public getAll(): Observable<Map<string, string>> {

@@ -15,7 +15,6 @@ public class SystemController {
         this.systemService = systemService;
     }
 
-    @Authorization()
     @RequestMapping(value = "/{key}", method = RequestMethod.GET)
     public String get(@PathVariable String key) {
         return systemService.get(key);

@@ -1,10 +1,10 @@
 import {Injectable, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
 
+import {AuthService} from './service/auth.service';
+
 import {SysSettingComponent} from './admin/sys-setting/sys-setting.component';
-
 import {CarListComponent} from './admin/car-list/car-list.component';
-
 import {UserListComponent} from './admin/user-list/user-list.component';
 import {UserAddComponent} from './admin/user-add/user-add.component';
 import {UserEditComponent} from './admin/user-edit/user-edit.component';
@@ -15,7 +15,7 @@ import {UserMapComponent} from './user/user-map/user-map.component';
 import {UserSettingComponent} from './user/user-setting/user-setting.component';
 
 import {LoginComponent} from './login/login.component';
-import {AuthService} from './service/auth.service';
+import {RegisterComponent} from './register/register.component';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,7 @@ export class AdminGuard implements CanActivate {
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'admin', redirectTo: 'admin/cars', pathMatch: 'full' },
   { path: 'admin/users', component: UserListComponent, canActivate: [ AdminGuard ] },
   { path: 'admin/cars', component: CarListComponent, canActivate: [ AdminGuard ] },

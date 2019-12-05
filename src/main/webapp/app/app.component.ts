@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   mobileQuery: MediaQueryList;
   fillerNav: Nav[] = [];
   private _mobileQueryListener: () => void;
-  public title = '智能停车场管理系统';
+  public title = '在线停车场管理系统';
 
   logout() {
     this.authService.logout();

@@ -1,0 +1,40 @@
+<div class="root">
+  <mat-card class="card">
+    <mat-card-title class="title-box">
+      注册新用户
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.name" required matInput placeholder="用户名">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.car" required matInput placeholder="车牌号">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.tel" matInput placeholder="电话">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="user.passwd" required matInput type="password" placeholder="密码">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="align-center">
+      <button mat-raised-button color="primary" (click)="add()">注册</button>
+    </div>
+  </mat-card>
+</div>

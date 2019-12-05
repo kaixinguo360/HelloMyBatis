@@ -23,7 +23,7 @@ export class UserService {
   private root = 'user';
 
   public add(user: User): Observable<User> {
-    return this.apiService.post<User>(this.root, user).pipe(
+    return this.apiService.post<User>(this.root, user, false).pipe(
       catchError(err => {
         return throwError(err);
       })

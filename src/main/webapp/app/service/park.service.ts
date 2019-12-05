@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {catchError, map} from 'rxjs/operators';
-import {Observable, of, throwError} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {ApiService} from './api.service';
 import {SystemService} from './system.service';
 
@@ -9,22 +9,10 @@ import {SystemService} from './system.service';
 })
 export class ParkService {
   
-  private price: number = -1;
-  
   public getPrice(): Observable<number> {
-    if (this.price != -1) {
-      return of(this.price);
-    } else {
-      return this.systemService.get("price").pipe(
-        map(price => {
-          this.price = Number(price);
-          return this.price;
-        }),
-        catchError(err => {
-          return throwError(err);
-        })
-      );
-    }
+    return this.systemService.getSettings("price").pipe(
+      map(price => Number(price))
+    );
   }
 
   public format(date: number): string {

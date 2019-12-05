@@ -18,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @Authorization(isAdmin = true)
+    //@Authorization(isAdmin = true)
     @RequestMapping(method = RequestMethod.POST)
     public User add(@RequestBody User user) throws InternalException {
         userService.add(user);
