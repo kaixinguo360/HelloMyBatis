@@ -7,8 +7,8 @@ class User(
     var name: String? = null,
     var car: String? = null,
     var tel: String? = null,
-    var parked: Boolean? = null,
-    var credit: Double? = null,
+    var parked: Boolean = false,
+    var credit: Double = 0.0,
     var passwd: String? = null,
     var enterTime: Date? = null
 ) {

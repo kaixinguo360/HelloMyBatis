@@ -14,12 +14,12 @@ public class ParkController {
     }
 
     @RequestMapping(path = "/enter/{car}", method = RequestMethod.GET)
-    public MessageResponse enter(@PathVariable String car, @RequestParam String key) {
+    public MessageResponse enter(@PathVariable String car, @RequestParam(required = false) String key) {
         return new MessageResponse(userService.enter(car, key));
     }
 
     @RequestMapping(path = "/out/{car}", method = RequestMethod.GET)
-    public MessageResponse out(@PathVariable String car, @RequestParam String key) {
+    public MessageResponse out(@PathVariable String car, @RequestParam(required = false) String key) {
         return new MessageResponse(userService.out(car, key));
     }
 }
